@@ -12,35 +12,51 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Administrator
-    </div>
+    <?php
+    $role_id = $this->session->userdata('role_id');
+    $queryMenu = "SELECT `tb_user_menu`.`id`, `menu`
+                    FROM `tb_user_menu` JOIN `tb_user_access_menu`
+                      ON `tb_user_menu`.`id` = `tb_user_access_menu`.`menu_id`
+                   WHERE `tb_user_access_menu`.`role_id` = $role_id
+                ORDER BY `tb_user_access_menu`.`menu_id`
+                ";
+    $menu = $this->db->query($queryMenu)->result_array();
+    ?>
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
+    <!-- Looping menu -->
+    <?php foreach ($menu as $mn) : ?>
+        <div class="sidebar-heading">
+            <?php echo $mn['menu']; ?>
+        </div>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+        <!-- siapin Sub Menu -->
+        <?php
+        $menuId = $mn['id'];
+        $querySubMenu = "SELECT *
+                    FROM `tb_user_sub_menu` JOIN `tb_user_menu`
+                      ON `tb_user_sub_menu`.`menu_id` = `tb_user_menu`.`id`
+                   WHERE `tb_user_sub_menu`.`menu_id` = $menuId
+                     AND `tb_user_sub_menu`.`is_active` = 1
+                ";
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        User
-    </div>
+        $subMenu = $this->db->query($querySubMenu)->result_array();
+        ?>
+        <!-- looping sub menu -->
+        <?php foreach ($subMenu as $sm) : ?>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span><?= $sm['title']; ?></span>
+                </a>
+            </li>
 
-    <!-- Nav Item - My Profile -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-user"></i>
-            <span>My Profile</span></a>
-    </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+        <?php endforeach; ?>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    <?php endforeach; ?>
+
 
     <!-- Heading -->
     <div class="sidebar-heading">
