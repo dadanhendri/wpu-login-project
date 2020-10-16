@@ -51,9 +51,10 @@
                 </a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
         <?php endforeach; ?>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
     <?php endforeach; ?>
 
