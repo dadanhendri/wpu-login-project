@@ -45,8 +45,8 @@
         <?php foreach ($subMenu as $sm) : ?>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                    <i class="<?= $sm['icon']; ?>"></i>
                     <span><?= $sm['title']; ?></span>
                 </a>
             </li>
