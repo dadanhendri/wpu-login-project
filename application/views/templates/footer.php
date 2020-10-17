@@ -50,6 +50,66 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
+<script>
+    $(function() {
+        $('.tombolTambahMenu').on('click', function() {
+            $('#menuModalLabel').html('Add Menu');
+            $('#menu').val('');
+            $('.modal-footer button[type=submit]').html('Add')
+        });
+
+        $('.tombolUbahMenu').on('click', function() {
+            $('#menuModalLabel').html('Update Menu');
+            $('.modal-footer button[type=submit]').html('Update')
+
+            const id = $(this).data('id');
+            $.ajax({
+                url: '<?= base_url() . "menu/getUbahMenu"; ?>',
+                data: {
+                    id: id
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#id').val(data.id);
+                    $('#menu').val(data.menu);
+                    $('.modal-body form').attr('action', '<?= base_url() . "menu/ubahMenu"; ?>')
+                }
+
+            });
+        });
+
+
+        $('.tombolTambahSubMenu').on('click', function() {
+            $('#subMenuModalLabel').html('Add Sub Menu');
+            $('.modal-footer button[type=submit]').html('Add')
+        });
+
+        $('.tampilModalUbah').on('click', function() {
+            $('#subMenuModalLabel').html('Update Sub Menu');
+            $('.modal-footer button[type=submit]').html('Update')
+
+            const id = $(this).data('id');
+            $.ajax({
+                url: '<?= base_url() . "menu/getUbah" ?>',
+                data: {
+                    id: id
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#id').val(data.id);
+                    $('#menu_id').val(data.menu_id);
+                    $('#title').val(data.title);
+                    $('#url').val(data.url);
+                    $('#icon').val(data.icon);
+                    $('.modal-body form').attr('action', '<?= base_url('menu/ubahSubMenu'); ?>')
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 

@@ -5,7 +5,7 @@ class Admin extends CI_Controller
 {
     public function index()
     {
-        $data['title'] = 'Halaman administrator';
+        $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
