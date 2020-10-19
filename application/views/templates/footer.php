@@ -92,7 +92,7 @@
 
             const id = $(this).data('id');
             $.ajax({
-                url: '<?= base_url() . "menu/getUbah" ?>',
+                url: '<?= base_url() . "menu/getUbahSubMenu" ?>',
                 data: {
                     id: id
                 },
