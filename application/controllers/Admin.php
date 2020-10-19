@@ -76,4 +76,24 @@ class Admin extends CI_Controller
             redirect('menu');
         }
     }
+
+    public function changeAccess()
+    {
+        $menu_id = $this->input->post('menuId');
+        $role_id = $this->input->post('roleId');
+
+        $data = [
+            'role_id' => $role_id,
+            'menu_id' => $menu_id
+        ];
+
+        $result = $this->db->get_where('tb_user_access_menu', $data);
+
+        if ($result->num_rows() < 1) {
+            $this->db->insert('tb_user_access_menu', $data);
+        } else {
+            $this->db->delete('tb_user_access_menu', $data);
+        }
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Access Changed</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    }
 }

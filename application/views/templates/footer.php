@@ -92,7 +92,7 @@
 
             const id = $(this).data('id');
             $.ajax({
-                url: '<?= base_url() . "menu/getUbah" ?>',
+                url: '<?= base_url() . "menu/getUbahSubMenu" ?>',
                 data: {
                     id: id
                 },
@@ -110,9 +110,19 @@
         });
 
         $('.form-check-input').on('click', function() {
-            const roleId = $(this).data('role');
             const menuId = $(this).data('menu');
-            console.log('ok');
+            const roleId = $(this).data('role');
+            $.ajax({
+                url: '<?= base_url("admin/changeAccess"); ?>',
+                data: {
+                    menuId: menuId,
+                    roleId: roleId
+                },
+                method: 'post',
+                success: function() {
+                    document.location.href = "<?= base_url('admin/roleAccess/'); ?>" + roleId;
+                }
+            });
         });
     });
 </script>
