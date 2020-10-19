@@ -51,6 +51,7 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 <!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
+
 <script>
     $(function() {
         $('.tombolTambahMenu').on('click', function() {
@@ -80,7 +81,6 @@
             });
         });
 
-
         $('.tombolTambahSubMenu').on('click', function() {
             $('#subMenuModalLabel').html('Add Sub Menu');
             $('.modal-footer button[type=submit]').html('Add')
@@ -105,6 +105,22 @@
                     $('#url').val(data.url);
                     $('#icon').val(data.icon);
                     $('.modal-body form').attr('action', '<?= base_url('menu/ubahSubMenu'); ?>')
+                }
+            });
+        });
+
+        $('.form-check-input').on('click', function() {
+            const menuId = $(this).data('menu');
+            const roleId = $(this).data('role');
+            $.ajax({
+                url: '<?= base_url("admin/changeAccess"); ?>',
+                data: {
+                    menuId: menuId,
+                    roleId: roleId
+                },
+                method: 'post',
+                success: function() {
+                    document.location.href = "<?= base_url('admin/roleAccess/'); ?>" + roleId;
                 }
             });
         });
