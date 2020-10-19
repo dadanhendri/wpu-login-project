@@ -51,6 +51,7 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 <!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
+
 <script>
     $(function() {
         $('.tombolTambahMenu').on('click', function() {
@@ -80,7 +81,6 @@
             });
         });
 
-
         $('.tombolTambahSubMenu').on('click', function() {
             $('#subMenuModalLabel').html('Add Sub Menu');
             $('.modal-footer button[type=submit]').html('Add')
@@ -107,6 +107,12 @@
                     $('.modal-body form').attr('action', '<?= base_url('menu/ubahSubMenu'); ?>')
                 }
             });
+        });
+
+        $('.form-check-input').on('click', function() {
+            const roleId = $(this).data('role');
+            const menuId = $(this).data('menu');
+            console.log('ok');
         });
     });
 </script>
