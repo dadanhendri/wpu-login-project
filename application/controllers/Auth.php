@@ -81,9 +81,10 @@ class Auth extends CI_Controller
             $this->load->view('auth/registration', $data);
             $this->load->view('templates/auth_footer');
         } else {
+            $email = $this->input->post('email', true);
             $data = [
                 'name' => $this->input->post('name', true),
-                'email' => $this->input->post('email', true),
+                'email' => $email,
                 'password' => password_hash($this->input->post('password1', true), PASSWORD_DEFAULT),
                 'image' => 'default.jpg',
                 'role_id' => 2,
@@ -91,11 +92,55 @@ class Auth extends CI_Controller
                 'date_created' => time()
             ];
 
-            $this->db->insert('tb_user', $data);
+            // siapkan token
+            $token = base64_encode(random_bytes(32));
+
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
+                'date_created' => time()
+            ];
+
+            // $this->db->insert('tb_user', $data);
+            // $this->db->insert('tb_user_token', $user_token);
+            // $this->_sendEmail($token, 'verify');
+            $this->_sendEmail();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation your account has been<strong> Created</strong>, please login</div>');
             redirect('auth');
         }
     }
+
+    private function _sendEmail($token, $type)
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            // 'smtp_user' => 'projectmy1020@gmail.com',
+            'smtp_user' => 'dadanhendri80@gmail.com',
+            'smtp_pass' => 'abughazi80',
+            'smtp_port' => '465',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+            'validation' => TRUE
+        ];
+
+        $this->load->library('email', $config);
+
+        $this->email->from('dadanhendri80@gmail.com', 'Perisai Husada');
+        $this->email->to($this->input->post('email'));
+        // if ($type == 'verify') {
+        //     $this->email->subject('Account Verification');
+        //     $this->email->message('Click this link to verify your account:<a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . $token . '">Activate</a>');
+        // }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+        }
+    }
+
 
     public function logout()
     {
@@ -109,4 +154,6 @@ class Auth extends CI_Controller
     {
         $this->load->view('auth/blocked');
     }
+
+
 }

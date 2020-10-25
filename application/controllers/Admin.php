@@ -11,7 +11,6 @@ class Admin extends CI_Controller
         $this->load->library('form_validation');
     }
 
-
     public function index()
     {
         $data['title'] = 'Dashboard';
@@ -96,4 +95,30 @@ class Admin extends CI_Controller
         }
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Access Changed</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
     }
+
+    public function user()
+    {
+        $data['title'] = 'User Management';
+        $data['user'] = $this->db->get_where('tb_user', ['email'=>$this->session->userdata['email']])->row_array();
+        
+        $this->load->model('User_model');
+        $data['users']= $this->User_model->getAllUser();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/user', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function hapusUser($id)
+    {
+        $this->db->set('is_active', 0);
+        $this->db->where('id', $id);
+        $this->db->update('tb_user');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>User Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/user');
+    }
+
 }
