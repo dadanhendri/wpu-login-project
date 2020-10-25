@@ -8,6 +8,7 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Menu_model');
+        $this->load->model('User_model');
         $this->load->library('form_validation');
     }
 
@@ -100,8 +101,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'User Management';
         $data['user'] = $this->db->get_where('tb_user', ['email'=>$this->session->userdata['email']])->row_array();
-        
-        $this->load->model('User_model');
+        $data['role'] = $this->db->get('tb_user_role')->result_array();        
         $data['users']= $this->User_model->getAllUser();
 
         $this->load->view('templates/header', $data);
@@ -119,6 +119,18 @@ class Admin extends CI_Controller
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>User Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
         redirect('admin/user');
+    }
+
+    public function getUser()
+    {
+        $id = $this->input->post('id');
+        echo json_encode($this->User_model->getUserById($id));
+        
+    }
+
+    public function ubahUser()
+    {
+        
     }
 
 }

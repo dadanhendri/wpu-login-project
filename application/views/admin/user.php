@@ -8,7 +8,7 @@
         <div class="col-lg">
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary tombolTambahSubMenu mb-3" data-toggle="modal" data-target="#subMenuModal">
+            <button type="button" class="btn btn-primary tombolTambahUser mb-3" data-toggle="modal" data-target="#userModal">
                 Add New User
             </button>
             <?php if (validation_errors()) : ?>
@@ -46,7 +46,7 @@
                             <td><?= $us['is_active']; ?></td>
                             <td><?= date('d M Y',$us['date_created']); ?></td>
                             <td>
-                                <a href="<?= base_url('admin/ubahUser/').$us['id']; ?>" class="badge badge-success">Edit</a>
+                                <a href="<?= base_url('admin/ubahUser/').$us['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $us['id'];?>" data-toggle="modal" data-target="#userModal">Edit</a>
                                 <a href="<?= base_url('admin/hapusUser/') . $us['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
                             </td>
                         </tr>
@@ -61,36 +61,40 @@
 <!-- /.container-fluid -->
 
 
-
-<!-- Modal tambah sub menu -->
-<div class="modal fade" id="subMenuModal" tabindex="-1" aria-labelledby="subMenuModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="subMenuModalLabel">Add New Sub Menu</h5>
+                <h5 class="modal-title" id="userModalLabel">Add New User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('menu/subMenu'); ?>" method="POST">
-                    <input type="hidden" name="id" id="id">
+                <form action="<?= base_url('admin/tambahUser'); ?>" method="POST">
+                    <input type="hidden" class="form-control" id="id" name="id">  
                     <div class="form-group">
-                        <select class="form-control" name="menu_id" id="menu_id">
-                            <option value="">Pilih Menu</option>
-                            <?php foreach ($menu as $mn) : ?>
-                                <option value="<?= $mn['id']; ?>"><?= $mn['menu']; ?></option>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?= set_value('name'); ?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?= set_value('email'); ?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Repeat password" value="<?= set_value('password2'); ?>">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="role_id" id="role_id">
+                            <option value="">Role</option>
+                            <?php foreach ($role as $rl) : ?>
+                            <?php if($rl['id'] != 1): ?>
+                                <option value="<?= $rl['id']; ?>"><?= $rl['role']; ?></option>
+                            <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?= set_value('title'); ?>">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="url" name="url" placeholder="Url" value="<?= set_value('url'); ?>">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" value="<?= set_value('icon'); ?>">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">

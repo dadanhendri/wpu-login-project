@@ -13,6 +13,11 @@ class User_model extends CI_model
         return $this->db->query($queryUser)->result_array();
     }
 
+    public function getUserById($id)
+    {
+        return $this->db->get_where('tb_user', ['id'=>$id])->row_array();
+    }
+
 
 
 
