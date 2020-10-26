@@ -18,6 +18,7 @@
                     FROM `tb_user_menu` JOIN `tb_user_access_menu`
                       ON `tb_user_menu`.`id` = `tb_user_access_menu`.`menu_id`
                    WHERE `tb_user_access_menu`.`role_id` = $role_id
+                     AND `tb_user_menu`.`is_active` = 1
                 ORDER BY `tb_user_access_menu`.`menu_id`
                 ";
     $menu = $this->db->query($queryMenu)->result_array();
@@ -49,7 +50,7 @@
                 <?php else : ?>
                 <li class="nav-item">
                 <?php endif; ?>
-                <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                <a class="nav-link p-2" href="<?= base_url($sm['url']); ?>">
                     <i class="<?= $sm['icon']; ?>"></i>
                     <span><?= $sm['title']; ?></span>
                 </a>
