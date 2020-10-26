@@ -100,9 +100,9 @@ class Admin extends CI_Controller
     public function user()
     {
         $data['title'] = 'User Management';
-        $data['user'] = $this->db->get_where('tb_user', ['email'=>$this->session->userdata['email']])->row_array();
-        $data['role'] = $this->db->get('tb_user_role')->result_array();        
-        $data['users']= $this->User_model->getAllUser();
+        $data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata['email']])->row_array();
+        $data['role'] = $this->db->get('tb_user_role')->result_array();
+        $data['users'] = $this->User_model->getAllUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -125,12 +125,26 @@ class Admin extends CI_Controller
     {
         $id = $this->input->post('id');
         echo json_encode($this->User_model->getUserById($id));
-        
     }
 
     public function ubahUser()
     {
-        
-    }
+        $id = $this->input->post('id', true);
+        $nama = $this->input->post('name', true);
+        $email = $this->input->post('email', true);
+        // $password = $this->input->post('password');
+        $role_id = $this->input->post('role_id', true);
+        $is_active = $this->input->post('is_active', true);
 
+        $data = [
+            "name" => $nama,
+            "email" => $email,
+            "role_id" => $role_id,
+            "is_active" => $is_active
+        ];
+
+        $this->User_model->updateUser($id, $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update User Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/user');
+    }
 }

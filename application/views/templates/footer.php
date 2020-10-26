@@ -130,33 +130,34 @@
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
 
-        $('.tombolTambahUser').on('click', function(){
+        $('.tombolTambahUser').on('click', function() {
             $('#userModalLabel').html('Add New user')
             $('.modal-footer button[type=submit]').html('Add')
         });
 
-        $('.tombolUbahUser').on('click', function(){
+        $('.tombolUbahUser').on('click', function() {
             $('#userModalLabel').html('Update User');
             $('.modal-footer button[type=submit]').html('Update')
 
             const id = $(this).data('id');
 
             $.ajax({
-                url:'<?= base_url()."admin/getUser";?>',
+                url: '<?= base_url() . "admin/getUser"; ?>',
                 method: 'post',
-                data:{id:id},
-                dataType:'json',
-                success: function(data){
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(data) {
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#email').val(data.email);
-                    $('#email').attr('readonly','readonly');
+                    $('#email').attr('readonly', 'readonly');
                     $('#password').val(data.password);
                     $('#role_id').val(data.role_id);
                     $('#is_active').val(data.is_active);
-                    $('.modal-body form').attr('action','<?= base_url()."admin/ubahUser";?>');                
+                    $('.modal-body form').attr('action', '<?= base_url() . "admin/ubahUser"; ?>');
                 }
-
             });
         });
 
