@@ -41,12 +41,12 @@
                             <td scope="row"><?= $i; ?></td>
                             <td><?= $us['name']; ?></td>
                             <td><?= $us['email']; ?></td>
-                            <td><img src="<?= base_url().'assets/img/profile/'. $us['image']; ?>" width="50px" class="img-fluid img-thumbnail" alt=""></td>
+                            <td><img src="<?= base_url() . 'assets/img/profile/' . $us['image']; ?>" width="50px" class="img-fluid img-thumbnail" alt=""></td>
                             <td><?= $us['role']; ?></td>
                             <td><?= $us['is_active']; ?></td>
-                            <td><?= date('d M Y',$us['date_created']); ?></td>
+                            <td><?= date('d M Y', $us['date_created']); ?></td>
                             <td>
-                                <a href="<?= base_url('admin/ubahUser/').$us['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $us['id'];?>" data-toggle="modal" data-target="#userModal">Edit</a>
+                                <a href="<?= base_url('admin/ubahUser/') . $us['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $us['id']; ?>" data-toggle="modal" data-target="#userModal">Edit</a>
                                 <a href="<?= base_url('admin/hapusUser/') . $us['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
                             </td>
                         </tr>
@@ -73,7 +73,7 @@
             </div>
             <div class="modal-body">
                 <form action="<?= base_url('admin/tambahUser'); ?>" method="POST">
-                    <input type="hidden" class="form-control" id="id" name="id">  
+                    <input type="hidden" class="form-control" id="id" name="id">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?= set_value('name'); ?>">
                     </div>
@@ -81,7 +81,10 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?= set_value('email'); ?>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                        <input type="hidden" class="form-control" id="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password1" name="password1" placeholder="password">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="password2" name="password2" placeholder="Repeat password" value="<?= set_value('password2'); ?>">
@@ -90,9 +93,9 @@
                         <select class="form-control" name="role_id" id="role_id">
                             <option value="">Role</option>
                             <?php foreach ($role as $rl) : ?>
-                            <?php if($rl['id'] != 1): ?>
-                                <option value="<?= $rl['id']; ?>"><?= $rl['role']; ?></option>
-                            <?php endif; ?>
+                                <?php if ($rl['id'] != 1) : ?>
+                                    <option value="<?= $rl['id']; ?>"><?= $rl['role']; ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>

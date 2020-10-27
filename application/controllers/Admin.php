@@ -132,13 +132,19 @@ class Admin extends CI_Controller
         $id = $this->input->post('id', true);
         $nama = $this->input->post('name', true);
         $email = $this->input->post('email', true);
-        // $password = $this->input->post('password');
+        $password1 = $this->input->post('password1');
+        if (empty($password1)) {
+            $password = $this->input->post('password');
+        } else {
+            $password = password_hash($this->input->post('password1', true), PASSWORD_DEFAULT);
+        }
         $role_id = $this->input->post('role_id', true);
         $is_active = $this->input->post('is_active', true);
 
         $data = [
             "name" => $nama,
             "email" => $email,
+            "password" => $password,
             "role_id" => $role_id,
             "is_active" => $is_active
         ];
