@@ -39,13 +39,13 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'menu' => $this->input->post('menu'),
+                'role' => $this->input->post('role'),
                 'is_active' => 1,
-                'date_create' => time()
+                'date_created' => time()
             ];
-            $this->db->insert('tb_user_menu', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('menu');
+            $this->db->insert('tb_user_role', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Role Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/role');
         }
     }
 
@@ -75,6 +75,33 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('menu');
         }
+    }
+
+    public function getRoleById()
+    {
+        $id = $this->input->post('id');
+        $role = $this->db->get_where('tb_user_role', ['id' => $id])->row_array();
+        echo json_encode($role);
+    }
+
+    public function editRole()
+    {
+        $id = $this->input->post('id');
+        $role = $this->input->post('role');
+        $this->db->set('role', $role);
+        $this->db->where('id', $id);
+        $this->db->update('tb_user_role');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/role');
+    }
+
+    public function deleteRole($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_user_role');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Delete Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/role');
     }
 
     public function changeAccess()
@@ -131,7 +158,7 @@ class Admin extends CI_Controller
     {
         $id = $this->input->post('id', true);
         $nama = $this->input->post('name', true);
-        $email = $this->input->post('email', true);
+        // $email = $this->input->post('email', true);
         $password1 = $this->input->post('password1');
         if (empty($password1)) {
             $password = $this->input->post('password');
@@ -143,7 +170,7 @@ class Admin extends CI_Controller
 
         $data = [
             "name" => $nama,
-            "email" => $email,
+            // "email" => $email,
             "password" => $password,
             "role_id" => $role_id,
             "is_active" => $is_active

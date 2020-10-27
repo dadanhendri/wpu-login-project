@@ -54,6 +54,34 @@
 
 <script>
     $(function() {
+        $('.tombolTambahRole').on('click', function() {
+            $('#roleModalLabel').html('Add Role');
+            $('#role').val('');
+            $('.modal-footer button[type=submit]').html('Add');
+        });
+
+        $('.tombolUbahRole').on('click', function() {
+            $('#roleModalLabel').html('Edit Role');
+            $('.modal-footer button[type=submit]').html('Edit');
+
+            const id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= base_url() . "admin/getRoleById"; ?>',
+                data: {
+                    id: id
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#id').val(data.id);
+                    $('#role').val(data.role);
+                    $('.modal-body form').attr('action', '<?= base_url() . "admin/editRole"; ?>')
+                }
+
+            });
+        });
+
         $('.tombolTambahMenu').on('click', function() {
             $('#menuModalLabel').html('Add Menu');
             $('#menu').val('');

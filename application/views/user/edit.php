@@ -46,16 +46,8 @@
                 </div>
             </div>
 
-
-
-
-
             <?= form_close(); ?>
-
-
-
-
         </div>
-
     </div>
-    <!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->

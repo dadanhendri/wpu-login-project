@@ -31,7 +31,7 @@
                             <td>
                                 <a href="<?= base_url('admin/roleAccess/') . $rl['id']; ?>" class="badge badge-warning" data-id="<?= $rl['id']; ?>">Access</a>
                                 <a href="" class="badge badge-success tombolUbahRole" data-toggle="modal" data-target="#roleModal" data-id="<?= $rl['id']; ?>">Edit</a>
-                                <a href="<?= base_url('menu/hapusRole/') . $rl['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
+                                <a href="<?= base_url('admin/deleteRole/') . $rl['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -59,11 +59,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('menu'); ?>" method="POST">
+                <form action="<?= base_url('admin/role'); ?>" method="POST">
                     <div class="form-group">
                         <input type="hidden" name="id" id="id">
                         <input type="text" class="form-control" id="role" name="role" placeholder="New Role">
-                        <?= form_error('menu', '<small class="text-danger pl-3">', '<?small>'); ?>
+                        <?= form_error('role', '<small class="text-danger pl-3">', '<?small>'); ?>
                     </div>
             </div>
             <div class="modal-footer">
