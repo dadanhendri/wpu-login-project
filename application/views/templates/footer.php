@@ -52,6 +52,10 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 <!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
 
+<!-- sweet alert -->
+<script src="<?= base_url('assets/'); ?>js/sweetalert/sweetalert2.all.min.js"></script>
+
+
 <script>
     $(function() {
         $('.tombolTambahRole').on('click', function() {
