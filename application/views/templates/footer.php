@@ -77,6 +77,27 @@
             });
         }
 
+        const tombolHapus = $('.tombol-hapus').on('click', function(event) {
+            event.preventDefault();
+            text = $(this).data('text')
+            href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this " + text + " ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.location.href = href;
+                }
+            });
+
+        });
+
 
         $('.tombolTambahRole').on('click', function() {
             $('#roleModalLabel').html('Add Role');

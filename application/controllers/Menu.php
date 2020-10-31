@@ -31,7 +31,9 @@ class Menu extends CI_Controller
                 'date_create' => time()
             ];
             $this->db->insert('tb_user_menu', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+            $this->session->set_flashdata('message', 'New Menu Added');
             redirect('menu');
         }
     }
@@ -47,7 +49,9 @@ class Menu extends CI_Controller
         $id = $this->input->post('id');
         $data = ['menu' => $this->input->post('menu')];
         $this->Menu_model->updateMenu($data, $id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Menu Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Menu Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Menu has been Updated');
         redirect('menu');
     }
 
@@ -55,7 +59,9 @@ class Menu extends CI_Controller
     {
         $this->db->where('id', $id);
         $this->db->update('tb_user_menu', ['is_active' => 0]);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Menu Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Menu Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Menu Deleted');
         redirect('menu');
     }
 
@@ -87,7 +93,8 @@ class Menu extends CI_Controller
             ];
 
             $this->db->insert('tb_user_sub_menu', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Sub Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Sub Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $this->session->set_flashdata('message', 'New Sub Menu Added');
             redirect('menu/subMenu');
         }
     }
@@ -110,7 +117,9 @@ class Menu extends CI_Controller
         ];
 
         $this->Menu_model->updateSubMenu($data, $id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Sub Menu Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Sub Menu Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Sub Menu has been Updated');
         redirect('menu/subMenu');
     }
 
@@ -118,7 +127,9 @@ class Menu extends CI_Controller
     {
         $this->db->where('id', $id);
         $this->db->update('tb_user_sub_menu', ['is_active' => 0]);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Sub Menu Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Sub Menu Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Sub Menu Deleted');
         redirect('menu/subMenu');
     }
 }

@@ -43,20 +43,28 @@ class Auth extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
+                        $this->session->set_flashdata('message', 'Login Success');
                         redirect('admin');
                     } else {
+                        $this->session->set_flashdata('message', 'Login Success');
                         redirect('user');
                     }
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password</div>');
+                    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password</div>');
+
+                    $this->session->set_flashdata('warning', 'Wrong password');
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated</div>');
+                // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated</div>');
+
+                $this->session->set_flashdata('warning', 'This email has not been activated');
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email is not registered</div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email is not registered</div>');
+
+            $this->session->set_flashdata('warning', 'This email is not registered');
             redirect('auth');
         }
     }
@@ -105,7 +113,9 @@ class Auth extends CI_Controller
             // $this->db->insert('tb_user_token', $user_token);
             // $this->_sendEmail($token, 'verify');
             $this->_sendEmail();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation your account has been<strong> Created</strong>, please login</div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation your account has been<strong> Created</strong>, please login</div>');
+
+            $this->session->set_flashdata('message', 'Congratulation your account has been Created, please login');
             redirect('auth');
         }
     }
@@ -146,7 +156,9 @@ class Auth extends CI_Controller
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout</div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout</div>');
+
+        $this->session->set_flashdata('message', 'You have been logout');
         redirect('auth');
     }
 

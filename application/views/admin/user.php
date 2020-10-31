@@ -19,7 +19,9 @@
                     </button>
                 </div>
             <?php endif; ?>
-            <?= $this->session->flashdata('message'); ?>
+            <!-- <?= $this->session->flashdata('message'); ?> -->
+
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
             <table class="table table-hover">
                 <thead>
@@ -47,7 +49,7 @@
                             <td><?= date('d M Y', $us['date_created']); ?></td>
                             <td>
                                 <a href="<?= base_url('admin/ubahUser/') . $us['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $us['id']; ?>" data-toggle="modal" data-target="#userModal">Edit</a>
-                                <a href="<?= base_url('admin/hapusUser/') . $us['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
+                                <a href="<?= base_url('admin/hapusUser/') . $us['id']; ?>" class="badge badge-danger tombol-hapus" data-text="User">Hapus</a>
                             </td>
                         </tr>
                         <?php $i++; ?>

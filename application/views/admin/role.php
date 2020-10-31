@@ -12,7 +12,10 @@
                 Add New Role
             </button>
 
-            <?php echo $this->session->flashdata('message'); ?>
+            <!-- <?php echo $this->session->flashdata('message'); ?> -->
+
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+
 
             <table class="table table-hover">
                 <thead>
@@ -31,7 +34,7 @@
                             <td>
                                 <a href="<?= base_url('admin/roleAccess/') . $rl['id']; ?>" class="badge badge-warning" data-id="<?= $rl['id']; ?>">Access</a>
                                 <a href="" class="badge badge-success tombolUbahRole" data-toggle="modal" data-target="#roleModal" data-id="<?= $rl['id']; ?>">Edit</a>
-                                <a href="<?= base_url('admin/deleteRole/') . $rl['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
+                                <a href="<?= base_url('admin/deleteRole/') . $rl['id']; ?>" class="badge badge-danger tombol-hapus" data-text="Role">Hapus</a>
                             </td>
                         </tr>
                         <?php $i++; ?>

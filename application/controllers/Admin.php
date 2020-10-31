@@ -44,7 +44,9 @@ class Admin extends CI_Controller
                 'date_created' => time()
             ];
             $this->db->insert('tb_user_role', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Role Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Role Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+            $this->session->set_flashdata('message', 'New Role Added');
             redirect('admin/role');
         }
     }
@@ -72,7 +74,9 @@ class Admin extends CI_Controller
                 'date_create' => time()
             ];
             $this->db->insert('tb_user_menu', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>New Menu Added</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+            $this->session->set_flashdata('message', 'New Menu Added');
             redirect('menu');
         }
     }
@@ -92,7 +96,9 @@ class Admin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->update('tb_user_role');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Role has been Updated');
         redirect('admin/role');
     }
 
@@ -100,7 +106,9 @@ class Admin extends CI_Controller
     {
         $this->db->where('id', $id);
         $this->db->delete('tb_user_role');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Delete Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Delete Role Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Role has been Deleted');
         redirect('admin/role');
     }
 
@@ -121,7 +129,9 @@ class Admin extends CI_Controller
         } else {
             $this->db->delete('tb_user_access_menu', $data);
         }
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Access Changed</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Access Changed</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'Access Changed');
     }
 
     public function user()
@@ -144,7 +154,9 @@ class Admin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->update('tb_user');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>User Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>User Deleted</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'User Deleted');
         redirect('admin/user');
     }
 
@@ -177,7 +189,9 @@ class Admin extends CI_Controller
         ];
 
         $this->User_model->updateUser($id, $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update User Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Update User Success</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('message', 'This User has been Updated');
         redirect('admin/user');
     }
 }

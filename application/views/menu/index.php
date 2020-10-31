@@ -12,7 +12,9 @@
                 Add New Menu
             </button>
 
-            <?php echo $this->session->flashdata('message'); ?>
+            <!-- <?php echo $this->session->flashdata('message'); ?> -->
+
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
             <table class="table table-hover">
                 <thead>
@@ -30,7 +32,7 @@
                             <td><?= $mn['menu']; ?></td>
                             <td>
                                 <a href="" class="badge badge-success tombolUbahMenu" data-toggle="modal" data-target="#menuModal" data-id="<?= $mn['id']; ?>">Edit</a>
-                                <a href="<?= base_url('menu/hapusMenu/') . $mn['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin ?')">Hapus</a>
+                                <a href="<?= base_url('menu/hapusMenu/') . $mn['id']; ?>" class="badge badge-danger tombol-hapus" data-text="Menu">Hapus</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
