@@ -109,10 +109,10 @@ class Auth extends CI_Controller
                 'date_created' => time()
             ];
 
-            // $this->db->insert('tb_user', $data);
+            $this->db->insert('tb_user', $data);
             // $this->db->insert('tb_user_token', $user_token);
             // $this->_sendEmail($token, 'verify');
-            $this->_sendEmail();
+            // $this->_sendEmail();
             // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation your account has been<strong> Created</strong>, please login</div>');
 
             $this->session->set_flashdata('message', 'Congratulation your account has been Created, please login');
