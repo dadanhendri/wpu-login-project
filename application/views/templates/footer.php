@@ -60,12 +60,20 @@
     $(function() {
 
         const flashdata = $('.flash-data').data('flashdata');
-
         if (flashdata) {
             Swal.fire({
-                title: 'Your Profile',
+                title: 'Success',
                 text: flashdata,
                 icon: 'success'
+            });
+        }
+
+        const flashdata_warning = $('.flash-data-warning').data('flashdata');
+        if (flashdata_warning) {
+            Swal.fire({
+                title: 'Ooops....',
+                text: flashdata_warning,
+                icon: 'error'
             });
         }
 
