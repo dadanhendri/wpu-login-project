@@ -66,7 +66,8 @@ class User extends CI_Controller
             $this->db->set('name', $name);
             $this->db->where('email', $email);
             $this->db->update('tb_user');
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Your profile has been Updated</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Your profile has been Updated</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $this->session->set_flashdata('message', 'Has been Updated');
             redirect('user');
         }
     }

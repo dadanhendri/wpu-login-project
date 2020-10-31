@@ -58,6 +58,18 @@
 
 <script>
     $(function() {
+
+        const flashdata = $('.flash-data').data('flashdata');
+
+        if (flashdata) {
+            Swal.fire({
+                title: 'Your Profile',
+                text: flashdata,
+                icon: 'success'
+            });
+        }
+
+
         $('.tombolTambahRole').on('click', function() {
             $('#roleModalLabel').html('Add Role');
             $('#role').val('');

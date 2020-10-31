@@ -4,11 +4,13 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-6">
             <?= $this->session->flashdata('message'); ?>
         </div>
-    </div>
+    </div> -->
+
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
     <div class="card mb-3 col-lg-6">
         <div class="row no-gutters">
