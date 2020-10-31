@@ -11,14 +11,14 @@
             <button type="button" class="btn btn-primary tombolTambahUser mb-3" data-toggle="modal" data-target="#userModal">
                 Add New User
             </button>
-            <?php if (validation_errors()) : ?>
+            <!-- <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong><?= validation_errors(); ?></strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <?php endif; ?>
+            <?php endif; ?> -->
             <!-- <?= $this->session->flashdata('message'); ?> -->
 
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
@@ -74,22 +74,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('admin/tambahUser'); ?>" method="POST">
+                <form action="<?= base_url('admin/user'); ?>" method="POST">
                     <input type="hidden" class="form-control" id="id" name="id">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?= set_value('name'); ?>">
+                        <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?= set_value('email'); ?>">
+                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="password" name="password" placeholder="password">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="password1" name="password1" placeholder="password">
+                        <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Repeat password" value="<?= set_value('password2'); ?>">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Repeat password">
+                        <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="role_id" id="role_id">
