@@ -43,7 +43,7 @@
                             <td><?= $sc['stages']; ?></td>
                             <!-- <td><?= $sc['classroom']; ?></td> -->
                             <td>
-                                <a href="<?= base_url('schedule/detailJadwal/') . $sc['id']; ?>" class="badge badge-primary" data-id="<?= $sc['id']; ?>" data-toggle="modal" data-target="#scheduleModal">Detail</a>
+                                <a href="<?= base_url('schedule/scheduleDetail/') . $sc['id']; ?>" class="badge badge-primary" data-id="<?= $sc['id']; ?>">Detail</a>
                                 <a href="<?= base_url('schedule/ubahJadwal/') . $sc['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $sc['id']; ?>" data-toggle="modal" data-target="#scheduleModal">Edit</a>
                                 <a href="<?= base_url('admin/hapusJadwal/') . $sc['id']; ?>" class="badge badge-danger tombol-hapus" data-text="Shedule">Hapus</a>
                             </td>
@@ -70,7 +70,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('admin/user'); ?>" method="POST">
+                <form action="<?= base_url('schedule'); ?>" method="POST">
                     <input type="hidden" class="form-control" id="id" name="id">
 
                     <div class="form-group">
@@ -82,19 +82,19 @@
                         <?= form_error('date', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="time_star" name="time_start" placeholder="Time start" value="<?= set_value('time_start'); ?>">
+                        <input type="time" class="form-control" id="time_star" name="time_start" placeholder="Time start" value="<?= set_value('time_start'); ?>">
                         <?= form_error('time_start', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="time_end" name="time_end" placeholder="Time end" value="<?= set_value('time_end'); ?>">
+                        <input type="time" class="form-control" id="time_end" name="time_end" placeholder="Time end" value="<?= set_value('time_end'); ?>">
                         <?= form_error('time_end', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="type" id="type">
-                            <option>--Please select type</option>
+                            <option>Type</option>
                             <option>Default</option>
-                            <option>stages</option>
-                            <option>classroom</option>
+                            <option>Stages</option>
+                            <option>Classroom</option>
                         </select>
                     </div>
 
