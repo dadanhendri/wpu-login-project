@@ -44,7 +44,7 @@
                             <!-- <td><?= $sc['classroom']; ?></td> -->
                             <td>
                                 <a href="<?= base_url('schedule/scheduleDetail/') . $sc['id']; ?>" class="badge badge-primary" data-id="<?= $sc['id']; ?>">Detail</a>
-                                <a href="<?= base_url('schedule/ubahJadwal/') . $sc['id']; ?>" class="badge badge-success tombolUbahUser" data-id="<?= $sc['id']; ?>" data-toggle="modal" data-target="#scheduleModal">Edit</a>
+                                <a href="<?= base_url('schedule/ubahJadwal/') . $sc['id']; ?>" class="badge badge-success tombolUbahSchedule" data-id="<?= $sc['id']; ?>" data-toggle="modal" data-target="#scheduleModal">Edit</a>
                                 <a href="<?= base_url('admin/hapusJadwal/') . $sc['id']; ?>" class="badge badge-danger tombol-hapus" data-text="Shedule">Hapus</a>
                             </td>
                         </tr>
@@ -82,7 +82,7 @@
                         <?= form_error('date', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <input type="time" class="form-control" id="time_star" name="time_start" placeholder="Time start" value="<?= set_value('time_start'); ?>">
+                        <input type="time" class="form-control" id="time_start" name="time_start" placeholder="Time start" value="<?= set_value('time_start'); ?>">
                         <?= form_error('time_start', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">

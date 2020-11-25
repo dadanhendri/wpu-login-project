@@ -60,4 +60,29 @@ class Schedule extends CI_Controller
         $this->load->view('schedule/detail', $data);;
         $this->load->view('templates/footer');
     }
+
+
+    public function getSchedule()
+    {
+        $id = $this->input->post('id');
+        $schedule = $this->db->get_where('tb_schedule', ['id' => $id])->row_array();
+        echo json_encode($schedule);
+    }
+
+
+    public function updateSchedule()
+    {
+        $id = $this->input->post('id');
+        $data = [
+            'title' => $this->input->post('title'),
+            'date' => $this->input->post('date'),
+            'time_start' => $this->input->post('time_start'),
+            'time_end' => $this->input->post('time_end'),
+            'type' => $this->input->post('type'),
+            'classroom' => $this->input->post('classroom')
+        ];
+        $this->Schedule_model->updateSchedule($id, $data);
+        $this->session->set_flashdata('message', 'Schedule Updated');
+        redirect('schedule');
+    }
 }

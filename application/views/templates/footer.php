@@ -210,7 +210,7 @@
 
         $('.tombolUbahUser').on('click', function() {
             $('#userModalLabel').html('Update User');
-            $('.modal-footer button[type=submit]').html('Update')
+            $('.modal-footer button[type=submit]').html('Update');
 
             const id = $(this).data('id');
 
@@ -230,6 +230,34 @@
                     $('#role_id').val(data.role_id);
                     $('#is_active').val(data.is_active);
                     $('.modal-body form').attr('action', '<?= base_url() . "admin/ubahUser"; ?>');
+                }
+            });
+        });
+
+
+        $('.tombolUbahSchedule').on('click', function() {
+
+            $('#scheduleModalLabel').html('Update Schedule');
+            $('.modal-footer button[type=submit]').html('Update');
+
+            const id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= base_url() . "schedule/getSchedule"; ?>',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#id').val(data.id);
+                    $('#title').val(data.title);
+                    $('#date').val(data.date);
+                    $('#time_start').val(data.time_start);
+                    $('#time_end').val(data.time_end);
+                    $('#type').val(data.type);
+                    $('#classroom').val(data.classroom);
+                    $('.modal-body form').attr('action', '<?= base_url() . "schedule/updateSchedule"; ?>');
                 }
             });
         });

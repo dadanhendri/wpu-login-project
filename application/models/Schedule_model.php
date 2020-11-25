@@ -12,4 +12,11 @@ class Schedule_model extends CI_model
     {
         return $this->db->get_where('tb_schedule', ['id' => $id])->row_array();
     }
+
+
+    public function updateschedule($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('tb_schedule', $data);
+    }
 }
